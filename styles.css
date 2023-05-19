@@ -1,4 +1,4 @@
-body {   
+body em{   
     background-image:linear-gradient(35deg, rgb(0, 204, 153), rgb(0, 255, 191));
     background-attachment: fixed;
     text-align: center; 
@@ -17,10 +17,8 @@ body {
    color:#bfff00;
    }     
      
+     a:link {color:#0080ff !important;}
+     a:visited {color:#00ffff !important;}
+     a:hover {color:##00b33c !important;}
    
-   a {
-     a:link {color:#0080ff !important;
-     a:visited {color:#00ffff !important;
-     a:hover {color:##00b33c !important;
-   
-   }
+  
