@@ -40,8 +40,8 @@ body{
 
 @media only screen and (max-width: 768px) {
   div {width: 25%;
-  padding-top: 10em;
-  padding-bottom: 10em;
+  padding-top: 30px;
+  padding-bottom: 30px;
   border: 1px solid black;
   text-align: center;
   overflow: auto;
