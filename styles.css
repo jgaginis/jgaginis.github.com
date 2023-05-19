@@ -13,7 +13,13 @@ body{
    font:open sans; 
    color:#bfff00;
    }     
-     
+   
+   a{
+   background-color: olive;
+   padding: 1em 1.5em;
+   color:slate;
+   }
+
    a:link{color:#0080ff;}
    a:visited{color:#00ffff;}
    a:hover{color:##00b33c;}
