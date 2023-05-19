@@ -16,17 +16,13 @@ body{
    background-color: grey;
    }     
    
-   a{
+   a {
    background-color: grey;
    padding: 1em 1.5em;
    color:slate;
    }
 
-#asty {
-   a:link{color:#0080ff;
-   a:visited{color:#00ffff;
-   a:hover{color:##00b33c;
-   a:active{color:#bfff00;
-       }
-   
-  
+    #asty:hover {color:##00b33c;}
+
+ 
+     
