@@ -12,10 +12,12 @@ body{
    font-size:300%; 
    font:open sans; 
    color:#bfff00;
+   padding: 1em 1.5em;
+   background-color: slate;
    }     
    
    a{
-   background-color: olive;
+   background-color: slate;
    padding: 1em 1.5em;
    color:slate;
    }
