@@ -44,7 +44,7 @@ body{
 
 @media only screen and (max-width: 768px) {
   div {width: 50%;
-  padding-top: 2.25rem;
+  padding-top: .5rem;
   padding-bottom: 2.25rem;
   padding-left: 2.25rem;
   border: 1px solid black;
