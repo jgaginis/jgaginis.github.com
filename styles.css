@@ -1,5 +1,5 @@
 body{   
-    background-image:linear-gradient(180deg, rgb(0, 204, 153), rgb(0, 255, 191, 0.75));
+    background-image:linear-gradient(45deg, rgb(0, 204, 153), rgb(0, 255, 191, 0.75));
     background-attachment: fixed;
     text-align: center; 
     font-size: 150%; 
@@ -7,6 +7,9 @@ body{
     margin: 3em;
     font-family: 'Courier New', monospace;
     width: auto;
+    padding-top: 2.25rem;
+  	padding-bottom: 2.25rem;
+  	border: 1px solid black;
     }
    
    h2{
@@ -39,9 +42,9 @@ body{
 
 
 @media only screen and (max-width: 768px) {
-  div {width: auto;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  div {width: 50%;
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
   border: 1px solid black;
   text-align: center;
   overflow: auto;
