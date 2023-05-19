@@ -16,6 +16,7 @@ body{
    color:#4000ff;
    padding: 1em 1.5em;
    background-color: rgb(0, 255, 191, 0.3);
+   text-shadow: 9px 9px lime;
    }     
    
    a {
