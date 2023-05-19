@@ -4,8 +4,9 @@ body{
     text-align: center; 
     font-size: 150%; 
     font: open sans;
-    margin: 10px;
+    margin: 3em;
     font-family: 'Courier New', monospace;
+    width: auto;
     }
    
    h2{
@@ -35,6 +36,16 @@ body{
 				text-decoration-style: double;
 
 		}
+
+
+@media only screen and (max-width: 768px) {
+  div {width: 25%;
+  padding-top: 10em;
+  padding-bottom: 10em;
+  border: 1px solid black;
+
+  }
+}
 
  
      
