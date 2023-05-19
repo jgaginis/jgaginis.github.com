@@ -18,7 +18,7 @@ body{
    }     
      
    a:link{color:#0080ff;}
-   a:visited{color:#00ffff;}
+   /*a:visited{color:#00ffff;}*/
    a:hover{color:##00b33c;}
    
   
