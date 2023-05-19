@@ -11,6 +11,7 @@ body{
   	padding-left: 2.25rem;
   	border: 1px solid black;
   	box-sizing: inherit;
+  	overflow: auto;
     }
    
    h2{
@@ -30,6 +31,7 @@ body{
    font-family: 'Courier New', monospace;
    text-decoration: none;
    font-size: 150%;
+   overflow: auto;
    }
 
 	#asty:hover {color:#4000ff;
@@ -42,7 +44,7 @@ body{
 
 
 @media only screen and (max-width: 768px) {
-  div {width: 50%;
+  div {width: auto;
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
   padding-left: 2.25rem;
@@ -50,6 +52,7 @@ body{
   border: 1px solid black;
   text-align: center;
   overflow: auto;
+  margin-left:2.25;
 
   }
 }
