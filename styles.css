@@ -13,17 +13,21 @@ body{
    font:open sans; 
    color:#bfff00;
    padding: 1em 1.5em;
-   background-color: grey;
+   background-color: rgb(0, 255, 191);
    }     
    
    a {
-   background-color: grey;
+   background-color: #00ffff;
    padding: 1em 1.5em;
-   color:slate;
+   color:0080ff;
+   font:open sans;
    }
 
-    #asty:hover {color:##00b33c;
-				background-color: magenta;
+	#asty:hover {color:#bfff00;
+				background-color: #00b33c;
 				padding: 1em 1.5em;
+				font:open sans;
 		}
+
+ 
      
