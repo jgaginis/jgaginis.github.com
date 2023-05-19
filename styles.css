@@ -13,11 +13,11 @@ body{
    font:open sans; 
    color:#bfff00;
    padding: 1em 1.5em;
-   background-color: slate;
+   background-color: grey;
    }     
    
    a{
-   background-color: slate;
+   background-color: grey;
    padding: 1em 1.5em;
    color:slate;
    }
