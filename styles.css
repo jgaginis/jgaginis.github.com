@@ -43,6 +43,8 @@ body{
   padding-top: 10em;
   padding-bottom: 10em;
   border: 1px solid black;
+  text-align: center;
+  overflow: auto;
 
   }
 }
