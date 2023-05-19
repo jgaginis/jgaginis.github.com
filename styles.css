@@ -22,10 +22,11 @@ body{
    color:slate;
    }
 
-   a:link{color:#0080ff;}
-   a:visited{color:#00ffff;}
-   a:hover{color:##00b33c;}
-   a:active{color:#bfff00;}
-
+#asty {
+   a:link{color:#0080ff;
+   a:visited{color:#00ffff;
+   a:hover{color:##00b33c;
+   a:active{color:#bfff00;
+       }
    
   
