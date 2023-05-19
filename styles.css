@@ -11,7 +11,7 @@ body{
    
    h2{
    text-align:center; 
-   text-transform: uppercase;
+   text-transform: lowercase;
    font-size:300%; 
    font-family: 'Brush Script MT', cursive;
    color:#848484;
