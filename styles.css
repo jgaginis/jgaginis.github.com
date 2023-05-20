@@ -33,6 +33,8 @@ body{
    text-decoration: none;
    font-size: 150%;
    overflow: auto;
+   display:inline-block;
+   margin: .5em .3em .5em .3em;
    }
 
 	#asty:hover {color:#4000ff;
@@ -40,6 +42,7 @@ body{
 				padding: .5em .75em;
 				font-family: 'Courier New', monospace;
 				text-decoration-style: double;
+
 
 		}
 
