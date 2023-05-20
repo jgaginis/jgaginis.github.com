@@ -12,6 +12,7 @@ body{
   	border: 1px solid black;
   	box-sizing: inherit;
   	overflow: auto;
+  	display:inline-block;
     }
    
    h2{
@@ -51,6 +52,7 @@ body{
   padding-right: 2.25rem;
   border: 1px solid black;
   text-align: center;
+  display: inline-block;
   overflow: auto;
   margin-left:2.25;
 
