@@ -5,8 +5,10 @@ body{
     font-size: 150%; 
     margin: .2rem;
     margin-left:2.25;
-    font-family: monospace; 
+    font-family: Consolas, monaco, monospace;
+    text-style: monospace;
     width: auto;
+    font-weight: 700;
     padding-top: .8rem;
   	padding-bottom: 9rem;
   	padding-left: 2.25rem;
@@ -21,7 +23,9 @@ body{
    text-transform: lowercase;
    text-decoration: bolder;
    font-size:225%; 
-   font-family: monospace; 
+   font-family: Consolas, monaco, monospace;
+   text-style: monospace;
+   font-weight: 700;
    color: #4169E1;
    background-color: rgb(65, 105, 225, 0.125);
    text-shadow: 9px 9px royalblue;
@@ -32,9 +36,11 @@ body{
    background-color: rgb(65, 105, 225, 0.5);
    padding: .5em .75em;
    color:#4169E1;
-   font-family: monospace; 
+   font-family: Consolas, monaco, monospace;
+   text-style: monospace;
    text-decoration: bolder;
    font-size: 150%;
+   font-weight: 700;
    overflow: auto;
    display:inline-block;
    margin: .5em .3em .5em .3em;
@@ -43,7 +49,7 @@ body{
 	#asty:hover {color:#FF5733 ;
 				background-image:linear-gradient(90deg, rgb((256, 88, 50, 0.1), rgb(65,105,225, 0.1));
 				padding: .5em .75em;
-				font-family: monaco; 
+				font-family: Consolas, monaco, monospace; 
 				text-decoration-style: double;}
 
 
