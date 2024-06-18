@@ -5,7 +5,7 @@ body{
     font-size: 150%; 
     margin: .2rem;
     margin-left:2.25;
-    font-family: Consolas,monaco,monospace; 
+    font-family: monospace; 
     width: auto;
     padding-top: .8rem;
   	padding-bottom: 9rem;
@@ -19,12 +19,12 @@ body{
    h2{
    text-align:center; 
    text-transform: lowercase;
-   text-decoration: bold;
+   text-decoration: bolder;
    font-size:225%; 
-   font-family: Consolas,monaco,monospace; 
+   font-family: Consolas; 
    color: #4169E1;
    background-color: rgb(65, 105, 225, 0.125);
-   text-shadow: 9px 9px lime;
+   text-shadow: 9px 9px royalblue;
    padding: .5em .75em;
    }     
    
@@ -32,8 +32,8 @@ body{
    background-color: rgb(65, 105, 225, 0.5);
    padding: .5em .75em;
    color:#4169E1;
-   font-family: 'Consolas',monaco,monospace; 
-   text-decoration: bold;
+   font-family: monospace; 
+   text-decoration: bolder;
    font-size: 150%;
    overflow: auto;
    display:inline-block;
@@ -43,7 +43,7 @@ body{
 	#asty:hover {color:#FF5733 ;
 				background-image:linear-gradient(90deg, rgb((256, 88, 50, 0.1), rgb(65,105,225, 0.1));
 				padding: .5em .75em;
-				font-family: Consolas,monaco,monospace; 
+				font-family: monospace; 
 				text-decoration-style: double;}
 
 
