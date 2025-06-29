@@ -16,7 +16,7 @@ function randRange (min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73) {
+function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
