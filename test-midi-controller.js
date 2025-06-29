@@ -10,6 +10,9 @@ navigator.requestMIDIAccess().then(access => {
   }
 });
 
+const repSend = () => sendNote;
+const times = 32;
+
 function randRange (min, max) {
    const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -23,6 +26,8 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
     midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
   }, 500);
 }
+
+Array.from({length: times}, () => repSend());
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
@@ -39,4 +44,5 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   if (!midiOutput) return;
   midiOutput.send([0xC0 + channel, programNum]);
 }
+
 
