@@ -10,7 +10,13 @@ navigator.requestMIDIAccess().then(access => {
   }
 });
 
-function sendNote(channel = 0, pitch = Math.floor(Math.random() * (((84 - 36) + 1) + 36)), velocity = Math.floor(Math.random() * (((72 - 32) + 1) + 32) {
+function randRange (min, max) {
+   const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+}
+
+function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73) {
   if (!midiOutput) return;
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
@@ -33,3 +39,4 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   if (!midiOutput) return;
   midiOutput.send([0xC0 + channel, programNum]);
 }
+
