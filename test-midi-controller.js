@@ -48,6 +48,7 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   midiOutput.send([0xC0 + channel, programNum]);
 }
 
+//this automatically generates a thirty bar arpeggio but it needs to be a function that is triggered by a button.  maybe it should be an array that also only generates four notes? work on this tomorrow? 
 for (let i = 0; i < times; i++) {
   setTimeout(() => {
     sendNote();
