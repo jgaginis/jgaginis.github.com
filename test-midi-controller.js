@@ -10,7 +10,7 @@ navigator.requestMIDIAccess().then(access => {
   }
 });
 
-function sendNote(channel = 0, pitch = 60, velocity = 100) {
+function sendNote(channel = 0, pitch = Math.floor(Math.random() * (84 - 36 + 1)) + 36, velocity = Math.floor(Math.random() * (72 - 32 + 1)) + 32 {
   if (!midiOutput) return;
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
@@ -18,18 +18,18 @@ function sendNote(channel = 0, pitch = 60, velocity = 100) {
   }, 500);
 }
 
-function sendCC(channel = 0, ccNum = 74, ccValue = 64) {
+function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
 }
 
-function sendBankSelect(channel = 0, bankNum = 1) {
+function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, 0, 0]); // Bank Select MSB = 0
   midiOutput.send([0xB0 + channel, 32, bankNum]); // Bank Select LSB
 }
 
-function sendProgramChange(channel = 0, programNum = 10) {
+function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
   midiOutput.send([0xC0 + channel, programNum]);
 }
