@@ -1,6 +1,7 @@
 //test-midi-controller.js
 const times = 32;
 const delay = 375; // milliseconds between notes
+const pitchArray = createRandomPitchArray(6, 32, 85);
 
 let midiOutput = null;
 
@@ -13,21 +14,27 @@ navigator.requestMIDIAccess().then(access => {
   }
 });
 
+function createRandomPitchArray(count, min, max) {
+  return Array.from({ length: count }, () => randRange(32, 85));
+}
+
 function randRange(min, max) {
    const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-function sendArp(times, delay) {
+function sendArp(times, delay, pitchArray) {
   for(let i = 0; i < times; i++) {
     setTimeout(() => {
-      sendNote();
+      const pitch = pitchArray[i % pitchArray.length]; // cycle through array
+      sendNote(0, pitch, 36);//channel 0, velocity 36
     }, i * delay);
   }
 }
 document.getElementById("noteArp").addEventListener("click", () => {
-  sendArp(times, delay);
+  const pitchArray = createRandomPitchArray(6, 32, 85);
+  sendArp(times, delay, pitchArray);
 });
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
