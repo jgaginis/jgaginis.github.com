@@ -20,12 +20,15 @@ function randRange(min, max) {
 }
 
 function sendArp(times, delay) {
-  for (let i = 0; i < times; i++) {
+  for(let i = 0; i < times; i++) {
     setTimeout(() => {
       sendNote();
     }, i * delay);
   }
 }
+document.getElementById("noteArp").addEventListener("click", () => {
+  sendArp(times, delay);
+});
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
