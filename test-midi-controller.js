@@ -10,23 +10,10 @@ navigator.requestMIDIAccess().then(access => {
   }
 });
 
-//const repSend = () => sendNote;
-//const times = 32;
-//Array.from({length: times}, () => repSend());
-
-
 function randRange(min, max) {
    const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
-}
-
-function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
-  if (!midiOutput) return;
-  midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
-  setTimeout(() => {
-    midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
-  }, 500);
 }
 
 function sendArp(delay = 375, times = 32) {
@@ -37,6 +24,14 @@ function sendArp(delay = 375, times = 32) {
     sendNote();
   }, i * delay);
 }
+}
+
+function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
+  if (!midiOutput) return;
+  midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
+  setTimeout(() => {
+    midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
+  }, 500);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
