@@ -16,9 +16,9 @@ function randRange(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-function sendArp(delay = 375, times = 32) {
-  const times = 32;
-  const delay = 375; // milliseconds between notes
+const times = 32;
+const delay = 375; // milliseconds between notes
+function sendArp(times, delay) {
   for (let i = 0; i < times; i++) {
   setTimeout(() => {
     sendNote();
