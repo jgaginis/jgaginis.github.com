@@ -1,7 +1,4 @@
 //test-midi-controller.js
-const times = 32;
-const delay = 375; // milliseconds between notes
-
 let midiOutput = null;
 
 navigator.requestMIDIAccess().then(access => {
@@ -32,8 +29,10 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   }, 500);
 }
 
-function sendArp(delay, times) {
-    for (let i = 0; i < times; i++) {
+function sendArp(delay = 375, times = 32) {
+  const times = 32;
+  const delay = 375; // milliseconds between notes
+  for (let i = 0; i < times; i++) {
   setTimeout(() => {
     sendNote();
   }, i * delay);
