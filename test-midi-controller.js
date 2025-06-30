@@ -32,7 +32,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   }, 500);
 }
 
-function sendArp {
+function sendArp (delay, times) {
     for (let i = 0; i < times; i++) {
   setTimeout(() => {
     sendNote();
