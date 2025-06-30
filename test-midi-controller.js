@@ -1,4 +1,7 @@
 //test-midi-controller.js
+const times = 32;
+const delay = 375; // milliseconds between notes
+
 let midiOutput = null;
 
 navigator.requestMIDIAccess().then(access => {
@@ -16,14 +19,12 @@ function randRange(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
 }
 
-const times = 32;
-const delay = 375; // milliseconds between notes
 function sendArp(times, delay) {
   for (let i = 0; i < times; i++) {
-  setTimeout(() => {
-    sendNote();
-  }, i * delay);
-}
+    setTimeout(() => {
+      sendNote();
+    }, i * delay);
+  }
 }
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
@@ -51,11 +52,7 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
 }
 
 //this automatically generates a thirty bar arpeggio but it needs to be a function that is triggered by a button.  maybe it should be an array that also only generates four notes? work on this tomorrow? 
-for (let i = 0; i < times; i++) {
-  setTimeout(() => {
-    sendNote();
-  }, i * delay);
-}
+
 
 
 
