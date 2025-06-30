@@ -18,7 +18,7 @@ navigator.requestMIDIAccess().then(access => {
 //Array.from({length: times}, () => repSend());
 
 
-function randRange (min, max) {
+function randRange(min, max) {
    const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
@@ -32,7 +32,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   }, 500);
 }
 
-function sendArp (delay, times) {
+function sendArp(delay, times) {
     for (let i = 0; i < times; i++) {
   setTimeout(() => {
     sendNote();
