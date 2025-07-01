@@ -51,17 +51,24 @@ body{
 				padding: .5em .75em;
 				font-family: Consolas, monaco, monospace; 
 				text-decoration-style: double;}
+#button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+
 
 button, input[type="button"], input[type="submit"]  {
-    background-color: #FF5733; /* Green */
-    color: 4169E1;
+    background-color: #FF5733; /* orange-red */
+    color: #4169E1;
     padding: .5em .75em;
     text-align: center;
-    border: .15em;
+    border: .15em solid #333;
     border-radius: .25em;
-    font: bold 'trebuchet ms',helvetica,sans-serif; 
-    font-size: 120%;
+    font: bold 120% 'trebuchet ms',helvetica,sans-serif; 
     cursor: pointer;
+    margin: 0.5em;   
 }
 
 @media only screen and (max-width: 768px) {
