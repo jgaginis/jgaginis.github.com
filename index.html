@@ -24,12 +24,12 @@
 <div>
 <a id="asty" href="mailto:lilshogi@proton.me">email</a></div>
 </div>
-<div>
-  <button onclick="sendNote()">Note On/Off</button>
+<div id="button-container">
+  <button id="sendNote"onclick="sendNote()">Note On/Off</button>
   <button id="noteArp" onclick="sendArp()">Note Arp</button>
-  <button onclick="sendCC()">Send CC</button>
-  <button onclick="sendBankSelect()">Send Bank Select</button>
-  <button onclick="sendProgramChange()">Send Program Change</button>
+  <button id="sendCC" onclick="sendCC()">Send CC</button>
+  <button id="sendBankSelect" onclick="sendBankSelect()">Send Bank Select</button>
+  <button id="sendProgramChange" onclick="sendProgramChange()">Send Program Change</button>
 
   <script src="test-midi-controller.js"></script>
 </div>
