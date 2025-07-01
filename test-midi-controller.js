@@ -1,7 +1,8 @@
 //test-midi-controller.js
-const times = 32;//const delay = 375; // milliseconds between notes
+const times = 32;//
+const delay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
-const rhythmPattern = [205, 136, 222, 136, 205, 410];
+const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
 let midiOutput = null;
 
@@ -48,7 +49,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
     midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
-  }, 500);
+  }, 375);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
