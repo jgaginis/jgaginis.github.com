@@ -28,7 +28,7 @@ function randRange(min, max) {
 function sendArp(times, delay, pitchArray) {
   let currentTime = 0;
   for(let i = 0; i < times; i++) {
-      const delay = rhythmPattern[i % rhythmPattern.length];//setTimeout(() => {
+      const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//setTimeout(() => {
       const pitch = pitchArray[i % pitchArray.length]; // cycle through array
 
       setTimeout((() => {
