@@ -52,7 +52,7 @@ body{
 				font-family: Consolas, monaco, monospace; 
 				text-decoration-style: double;}
 
-button, input[type="button"], input[type="submit"]  {
+.btn, button, input[type="button"], input[type="submit"]  {
     background-color: #FF5733; /* Green */
     color: 4169E1;
     padding: .5em .75em;
