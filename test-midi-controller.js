@@ -2,6 +2,7 @@
 const times = 32;
 const delay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
+const rhythmPattern = [205, 136, 222, 136, 205, 375];
 
 let midiOutput = null;
 
@@ -25,13 +26,19 @@ function randRange(min, max) {
 }
 
 function sendArp(times, delay, pitchArray) {
+  let currentTime = 0;
   for(let i = 0; i < times; i++) {
-    setTimeout(() => {
+      const delay = rhythmPattern[i % rhythmPattern.length];//setTimeout(() => {
       const pitch = pitchArray[i % pitchArray.length]; // cycle through array
+
+      setTimeout((() => {
       sendNote(0, pitch, 36);//channel 0, velocity 36
-    }, i * delay);
+    }, currentTime);
+
+    currentTime += delay;
   }
 }
+
 document.getElementById("noteArp").addEventListener("click", () => {
   const pitchArray = createRandomPitchArray(6, 32, 85);
   sendArp(times, delay, pitchArray);
