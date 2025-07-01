@@ -33,7 +33,7 @@ function sendArp(times, delay, pitchArray) {
 
       setTimeout(() => {
       sendNote(0, pitch, 36);//channel 0, velocity 36
-    }, currentTime);
+    }, i * currentTime); //added i * instead of only currentTime in this line 
 
     currentTime += delay;
   }
