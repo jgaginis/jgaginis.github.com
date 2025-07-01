@@ -59,7 +59,7 @@ body{
 }
 
 
-button, input[type="button"], input[type="submit"]  {
+#sendNote, #noteArp, #sendCC, #sendBankSelect, #sendProgramChange, button, input[type="button"], input[type="submit"]  {
     background-color: #FF5733; /* orange-red */
     color: #4169E1;
     padding: .5em .75em;
