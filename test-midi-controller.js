@@ -31,7 +31,7 @@ function sendArp(times, delay, pitchArray) {
       const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//setTimeout(() => {
       const pitch = pitchArray[i % pitchArray.length]; // cycle through array
 
-      setTimeout((() => {
+      setTimeout(() => {
       sendNote(0, pitch, 36);//channel 0, velocity 36
     }, currentTime);
 
