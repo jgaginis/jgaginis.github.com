@@ -52,6 +52,16 @@ body{
 				font-family: Consolas, monaco, monospace; 
 				text-decoration-style: double;}
 
+.button {
+    background-color: #FF5733; /* Green */
+    color: 4169E1;
+    padding: .5em .75em;
+    text-align: center;
+    border: .15em;
+    border-radius: .25em;
+    font-size: 120%;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 768px) {
   div {width: auto;
