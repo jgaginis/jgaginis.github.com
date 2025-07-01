@@ -7,8 +7,8 @@
 
 
 #sendNote, #noteArp, #sendCC, #sendBankSelect, #sendProgramChange, button, input[type="button"], input[type="submit"]  {
-    background-color: #FF5733; /* orange-red */
-    color: #4169E1;
+    background-color: #E0B941; /* orange-red */
+    color: #41B9E0;
     padding: .5em .75em;
     text-align: center;
     border: .15em solid #333;
