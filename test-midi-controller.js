@@ -32,7 +32,7 @@ function sendArp(times, delay, pitchArray) {
 
       setTimeout(() => {
       sendNote(0, pitch, 36);//channel 0, velocity 36
-    }, i * currentTime); //added i * instead of only currentTime in this line 
+    }, currentTime); //previously i * currentTime in this line 
 
     currentTime += delay;
   }
@@ -48,7 +48,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
     midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
-  }, 375);
+  }, 222);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
