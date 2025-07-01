@@ -27,12 +27,26 @@ function randRange(min, max) {
 
 function sendArp(times, delay, pitchArray) {
   let currentTime = 0;
+  let transposition = 0;
+  const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
+        pitchArray[Math.floor(Math.random() * pitchArray.length)]
+      );
+  
   for(let i = 0; i < times; i++) {
       const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//setTimeout(() => {
-      const pitch = pitchArray[i % pitchArray.length]; // cycle through array
+      const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
+      
+         // Update transposition every 8 notes
+    if (i % 8 === 0 && i / 8 < transpositions.length) {
+      transposition = transpositions[Math.floor(i / 8)];
+    }
 
+    // Get the pitch with transposition
+    const basePitch = pitchArray[i % pitchArray.length];
+    const shiftedPitch = basePitch + transposition;
+    
       setTimeout(() => {
-      sendNote(0, pitch, 36);//channel 0, velocity 36
+      sendNote(0, shiftedPitch, 36);//previously channel 0, *pitch is now shiftedPitch velocity 36
     }, currentTime); //previously i * currentTime in this line 
 
     currentTime += delay;
