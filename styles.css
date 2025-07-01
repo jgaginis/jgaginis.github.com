@@ -52,13 +52,14 @@ body{
 				font-family: Consolas, monaco, monospace; 
 				text-decoration-style: double;}
 
-button {
+button, input[type="button"], input[type="submit"]  {
     background-color: #FF5733; /* Green */
     color: 4169E1;
     padding: .5em .75em;
     text-align: center;
     border: .15em;
     border-radius: .25em;
+    font: bold 'trebuchet ms',helvetica,sans-serif; 
     font-size: 120%;
     cursor: pointer;
 }
