@@ -1,7 +1,7 @@
 
 //test-midi-controller.js 11:25 latest iteration
 const times = 36;//
-//const delay = 375; // milliseconds between notes
+const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//const delay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
 const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
@@ -34,7 +34,7 @@ function sendArp(times, delay, pitchArray) {
       );
   
   for(let i = 0; i < times; i++) {
-      const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//setTimeout(() => {
+      const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
       const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
       
          // Update transposition every 8 notes
@@ -91,7 +91,7 @@ function sendChordWithSustain() {
   if (!output) {
     console.warn("No MIDI output available.");
     return;
-    midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
+    //midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
   }
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
 
