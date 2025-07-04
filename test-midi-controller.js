@@ -1,7 +1,7 @@
 
 //test-midi-controller.js 11:25 latest iteration
-const times = 32;//
-const delay = 375; // milliseconds between notes
+const times = 36;//
+//const delay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
 const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
