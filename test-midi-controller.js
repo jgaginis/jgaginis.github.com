@@ -31,7 +31,7 @@ function sendArp(times, delay, pitchArray) {
   let transposition = 0;
   const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
         pitchArray[Math.floor(Math.random() * pitchArray.length)]);
-   const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+   //const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
    const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
 
   
