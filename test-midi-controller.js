@@ -1,9 +1,9 @@
 
 //test-midi-controller.js 11:25 latest iteration
 const times = 36;//
-const oldDelay = 350; // milliseconds between notes
+const delay = 350; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
-const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
+const rhythmPatternGlobal = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
 let midiOutput = null;
 
@@ -33,7 +33,8 @@ function sendArp(times, delay, pitchArray) {
         pitchArray[Math.floor(Math.random() * pitchArray.length)]);
   
   for(let i = 0; i < times; i++) {  
-    const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+    const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
+    const delays = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
     const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
 
          // Update transposition every 8 notes //moved const delay and pitch above and defined globally just in case.
@@ -49,13 +50,13 @@ function sendArp(times, delay, pitchArray) {
       sendNote(0, shiftedPitch, 36);//previously channel 0, *pitch is now shiftedPitch velocity 36
     }, currentTime); //previously i * currentTime in this line 
 
-    currentTime += delay;
+    currentTime += delays;
   }
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
   const pitchArray = createRandomPitchArray(6, 32, 85);
-  sendArp(times, delay, pitchArray);
+  sendArp(times, delays, pitchArray);
 });
 
 
