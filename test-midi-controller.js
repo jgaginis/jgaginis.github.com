@@ -1,10 +1,6 @@
-
 //test-midi-controller.js 11:25 latest iteration
-const times = 36;//
+const times = 36;
 const delay = 350; // milliseconds between notes
-const pitchArray = createRandomPitchArray(6, 32, 85);
-const rhythmPatternGlobal = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
-
 let midiOutput = null;
 
 navigator.requestMIDIAccess().then(access => {
@@ -17,67 +13,64 @@ navigator.requestMIDIAccess().then(access => {
 });
 
 function createRandomPitchArray(count, min, max) {
-  return Array.from({ length: count }, () => randRange(32, 85));
+  return Array.from({ length: count }, () => randRange(min, max));
 }
 
 function randRange(min, max) {
-   const minCeiled = Math.ceil(min);
+  const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
-  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
 
-function sendArp(times, delay, pitchArray) {
+function sendArp(times, baseDelay, pitchArray) {
   let currentTime = 0;
   let transposition = 0;
-  const transpositions = Array.from({ length: 5 }, () => // Choose 4 random transpositions from pitchArray
-        pitchArray[Math.floor(Math.random() * pitchArray.length)]);
-  
-  for(let i = 0; i < times; i++) {  
-    const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
-    const delays = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
-    const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
+  const rhythmPattern = [205, 136, 222, 136, 205, 342];
+  const transpositions = Array.from({ length: 5 }, () =>
+    pitchArray[Math.floor(Math.random() * pitchArray.length)]
+  );
 
-         // Update transposition every 8 notes //moved const delay and pitch above and defined globally just in case.
+  for (let i = 0; i < times; i++) {
+    const delayVal = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+
     if (i % 8 === 0 && i / 8 < transpositions.length) {
       transposition = transpositions[Math.floor(i / 8)];
     }
 
-    // Get the pitch with transposition
     const basePitch = pitchArray[i % pitchArray.length];
     const shiftedPitch = basePitch + transposition;
-    
-      setTimeout(() => {
-      sendNote(0, shiftedPitch, 36);//previously channel 0, *pitch is now shiftedPitch velocity 36
-    }, currentTime); //previously i * currentTime in this line 
 
-    currentTime += delay;
+    setTimeout(() => {
+      sendNote(0, shiftedPitch, 84);
+    }, currentTime);
+
+    currentTime += delayVal;
   }
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
   const pitchArray = createRandomPitchArray(6, 32, 85);
-  sendArp(times, delays, pitchArray);
+  sendArp(times, delay, pitchArray);
 });
-
-
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
-  midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
+  if (pitch < 0 || pitch > 127) return;
+  midiOutput.send([0x90 + channel, pitch, velocity]);
   setTimeout(() => {
-    midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
+    midiOutput.send([0x80 + channel, pitch, 0]);
   }, 350);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
-  midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
+  midiOutput.send([0xB0 + channel, ccNum, ccValue]);
 }
 
 function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   if (!midiOutput) return;
-  midiOutput.send([0xB0 + channel, 0, 0]); // Bank Select MSB = 0
-  midiOutput.send([0xB0 + channel, 32, bankNum]); // Bank Select LSB
+  midiOutput.send([0xB0 + channel, 0, 0]);
+  midiOutput.send([0xB0 + channel, 32, bankNum]);
 }
 
 function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 128)) {
@@ -85,43 +78,37 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   midiOutput.send([0xC0 + channel, programNum]);
 }
 
-//this automatically generates a thirty bar arpeggio but it needs to be a function that is triggered by a button.  maybe it should be an array that also only generates four notes? work on this tomorrow? 
-
 function sendChordWithSustain() {
-  if (!output) {
+  if (!midiOutput) {
     console.warn("No MIDI output available.");
-    return;}
-    //midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message  
+    return;
+  }
+
+  const pitchArray = createRandomPitchArray(6, 32, 85);
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
-
-  // Choose dyad or triad
   const chordType = Math.random() < 0.5 ? 2 : 3;
-
-  // Harmony intervals: could be 3rd, 5th, 7th
-  const intervals = [0, 4, 7, 8, 10]; // major 3rd, perfect 5th, minor 7th
+  const intervals = [0, 4, 7, 8, 10];
   const selected = [];
 
   while (selected.length < chordType) {
     const interval = intervals[Math.floor(Math.random() * intervals.length)];
-    const note = basePitch + interval; //subbing pitch for note and testing
-    if (!selected.includes(note)) selected.push(note);
+    const note = basePitch + interval;
+    if (note <= 127 && !selected.includes(note)) selected.push(note);
   }
 
-  // Sustain CC (64), value from 108 to 127
   const sustainValue = randRange(108, 128);
-  output.send([0xB0, 64, sustainValue]); // 0xB0 = CC on channel 1
+  midiOutput.send([0xB0, 64, sustainValue]);
 
-  // Send chord notes
   selected.forEach(pitch => {
-    output.send([0x90, pitch, 84]); // Note On
+    midiOutput.send([0x90, pitch, 84]);
   });
 
-  // Release chord after long hold
   setTimeout(() => {
     selected.forEach(pitch => {
-      output.send([0x80, pitch, 0]); // Note Off
+      midiOutput.send([0x80, pitch, 0]);
     });
-    output.send([0xB0, 64, 0]); // Turn sustain pedal off
-  }, 4000); // 4 seconds
-document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
+    midiOutput.send([0xB0, 64, 0]);
+  }, 4000);
 }
+
+document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
