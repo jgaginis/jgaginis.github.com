@@ -1,9 +1,4 @@
 //test-midi-controller.js
-const times = 32;//
-const delay = 375; // milliseconds between notes
-const pitchArray = createRandomPitchArray(6, 32, 85);
-const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
-
 let midiOutput = null;
 
 navigator.requestMIDIAccess().then(access => {
@@ -14,6 +9,11 @@ navigator.requestMIDIAccess().then(access => {
     console.error("No MIDI output devices found.");
   }
 });
+
+const times = 32;//
+const delay = 375; // milliseconds between notes
+const pitchArray = createRandomPitchArray(6, 32, 85);
+const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
 function createRandomPitchArray(count, min, max) {
   return Array.from({ length: count }, () => randRange(32, 85));
@@ -86,14 +86,19 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
 
 //this automatically generates a thirty bar arpeggio but it needs to be a function that is triggered by a button.  maybe it should be an array that also only generates four notes? work on this tomorrow? 
 
-function sendChordWithSustain(channel = 0) {
+function sendChordWithSustain() {
+  function sendChordWithSustain() {
+  if (!output) {
+    console.warn("No MIDI output available.");
+    return;
+  }
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
 
   // Choose dyad or triad
   const chordType = Math.random() < 0.5 ? 2 : 3;
 
   // Harmony intervals: could be 3rd, 5th, 7th
-  const intervals = [0, 4, 7, 10]; // major 3rd, perfect 5th, minor 7th
+  const intervals = [0, 4, 7, 8, 10]; // major 3rd, perfect 5th, minor 7th
   const selected = [];
 
   while (selected.length < chordType) {
