@@ -50,7 +50,7 @@ function sendArp(times, delay, pitchArray) {
       sendNote(0, shiftedPitch, 36);//previously channel 0, *pitch is now shiftedPitch velocity 36
     }, currentTime); //previously i * currentTime in this line 
 
-    currentTime += delays;
+    currentTime += delay;
   }
 }
 
