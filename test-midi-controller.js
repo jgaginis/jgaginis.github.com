@@ -1,7 +1,7 @@
 
 //test-midi-controller.js 11:25 latest iteration
 const times = 36;//
-const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];//const delay = 375; // milliseconds between notes
+const oldDelay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
 const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
@@ -31,7 +31,7 @@ function sendArp(times, delay, pitchArray) {
   let transposition = 0;
   const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
         pitchArray[Math.floor(Math.random() * pitchArray.length)]);
-   //const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+   const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
    const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
 
   
