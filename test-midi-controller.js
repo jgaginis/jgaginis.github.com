@@ -1,4 +1,5 @@
-//test-midi-controller.js
+
+//test-midi-controller.js 11:25 latest iteration
 const times = 32;//
 const delay = 375; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
@@ -90,6 +91,7 @@ function sendChordWithSustain() {
   if (!output) {
     console.warn("No MIDI output available.");
     return;
+    midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
   }
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
 
@@ -124,4 +126,3 @@ function sendChordWithSustain() {
   }, 4000); // 4 seconds
 document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
 }
-
