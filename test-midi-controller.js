@@ -86,7 +86,7 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
 
 //this automatically generates a thirty bar arpeggio but it needs to be a function that is triggered by a button.  maybe it should be an array that also only generates four notes? work on this tomorrow? 
 
-function sendChordWithSustain() {
+function sendChordWithSustain(channel = 0) {
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
 
   // Choose dyad or triad
