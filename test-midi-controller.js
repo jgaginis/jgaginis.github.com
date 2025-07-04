@@ -26,7 +26,7 @@ function sendArp(times, pitchArray) { //removed baseDelay from args
   let currentTime = 0;
   let transposition = 0;
   const rhythmPattern = [205, 136, 222, 136, 205, 342];
-  const transpositions = Array.from({ length: 5 }, () =>
+  const transpositions = Array.from({ length: pitchArray.length }, () => //changed from length: 5
     pitchArray[Math.floor(Math.random() * pitchArray.length)]
   );
 
@@ -87,7 +87,7 @@ function sendChordWithSustain() {
   const pitchArray = createRandomPitchArray(6, 32, 85);
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
   const chordType = Math.random() < 0.5 ? 2 : 3;
-  const intervals = [0, 4, 7, 8, 10];
+  const intervals = pitchArray;//[0, 4, 7, 8, 10]; changed from cheap house to pitchArray eu de cologne
   const selected = [];
 
   while (selected.length < chordType) {
