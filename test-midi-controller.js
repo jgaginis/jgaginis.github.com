@@ -118,7 +118,6 @@ function sendChordWithSustain() {
     });
     output.send([0xB0, 64, 0]); // Turn sustain pedal off
   }, 4000); // 4 seconds
-  
-document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
-sendChoreWithSustain();
 }
+
+document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
