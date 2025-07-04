@@ -30,14 +30,13 @@ function sendArp(times, delay, pitchArray) {
   let currentTime = 0;
   let transposition = 0;
   const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
-        pitchArray[Math.floor(Math.random() * pitchArray.length)]
-      );
+        pitchArray[Math.floor(Math.random() * pitchArray.length)]);
+   const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+   const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
+
   
-  for(let i = 0; i < times; i++) {
-      const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
-      const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
-      
-         // Update transposition every 8 notes
+  for(let i = 0; i < times; i++) {      
+         // Update transposition every 8 notes //moved const delay and pitch above and defined globally just in case.
     if (i % 8 === 0 && i / 8 < transpositions.length) {
       transposition = transpositions[Math.floor(i / 8)];
     }
@@ -124,5 +123,5 @@ function sendChordWithSustain() {
     });
     output.send([0xB0, 64, 0]); // Turn sustain pedal off
   }, 4000); // 4 seconds
-document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
+document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
 }
