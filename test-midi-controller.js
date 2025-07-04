@@ -98,8 +98,8 @@ function sendChordWithSustain() {
 
   while (selected.length < chordType) {
     const interval = intervals[Math.floor(Math.random() * intervals.length)];
-    const pitch = basePitch + interval; //subbing pitch for note and testing
-    if (!selected.includes(pitch)) selected.push(pitch);
+    const note = basePitch + interval; //subbing pitch for note and testing
+    if (!selected.includes(note)) selected.push(note);
   }
 
   // Sustain CC (64), value from 108 to 127
@@ -120,5 +120,5 @@ function sendChordWithSustain() {
   }, 4000); // 4 seconds
   
 document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
-
+sendChoreWithSustain();
 }
