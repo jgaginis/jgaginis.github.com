@@ -29,7 +29,7 @@ function randRange(min, max) {
 function sendArp(times, delay, pitchArray) {
   let currentTime = 0;
   let transposition = 0;
-  const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
+  const transpositions = Array.from({ length: 5 }, () => // Choose 4 random transpositions from pitchArray
         pitchArray[Math.floor(Math.random() * pitchArray.length)]);
   
   for(let i = 0; i < times; i++) {  
