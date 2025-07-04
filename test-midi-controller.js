@@ -1,7 +1,7 @@
 
 //test-midi-controller.js 11:25 latest iteration
 const times = 36;//
-const oldDelay = 375; // milliseconds between notes
+const oldDelay = 350; // milliseconds between notes
 const pitchArray = createRandomPitchArray(6, 32, 85);
 const rhythmPattern = [205, 136, 222, 136, 205, 342];//also liked 375, and 410 for the last value
 
@@ -31,11 +31,11 @@ function sendArp(times, delay, pitchArray) {
   let transposition = 0;
   const transpositions = Array.from({ length: 4 }, () => // Choose 4 random transpositions from pitchArray
         pitchArray[Math.floor(Math.random() * pitchArray.length)]);
-   const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
-   const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
-
   
-  for(let i = 0; i < times; i++) {      
+  for(let i = 0; i < times; i++) {  
+    const delay = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
+    const pitch = pitchArray[i % pitchArray.length]; // cycle through array 
+
          // Update transposition every 8 notes //moved const delay and pitch above and defined globally just in case.
     if (i % 8 === 0 && i / 8 < transpositions.length) {
       transposition = transpositions[Math.floor(i / 8)];
@@ -65,7 +65,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
   midiOutput.send([0x90 + channel, pitch, velocity]); // Note On
   setTimeout(() => {
     midiOutput.send([0x80 + channel, pitch, 0]); // Note Off after 500ms
-  }, 375);
+  }, 350);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
@@ -89,9 +89,8 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
 function sendChordWithSustain() {
   if (!output) {
     console.warn("No MIDI output available.");
-    return;
-    //midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message
-  }
+    return;}
+    //midiOutput.send([0xB0 + channel, ccNum, ccValue]); // CC message  
   const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
 
   // Choose dyad or triad
