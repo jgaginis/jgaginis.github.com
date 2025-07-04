@@ -108,7 +108,7 @@ function sendChordWithSustain() {
 
   // Send chord notes
   selected.forEach(pitch => {
-    output.send([0x90, pitch, 100]); // Note On
+    output.send([0x90, pitch, 84]); // Note On
   });
 
   // Release chord after long hold
@@ -119,7 +119,7 @@ function sendChordWithSustain() {
     output.send([0xB0, 64, 0]); // Turn sustain pedal off
   }, 4000); // 4 seconds
   
-  document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
+document.getElementById("send-chord").addEventListener("click", sendChordWithSustain);
 
 }
 
