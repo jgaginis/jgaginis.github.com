@@ -22,7 +22,7 @@ function randRange(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
 
-function sendArp(times, baseDelay, pitchArray) {
+function sendArp(times, pitchArray) { //removed baseDelay from args
   let currentTime = 0;
   let transposition = 0;
   const rhythmPattern = [205, 136, 222, 136, 205, 342];
