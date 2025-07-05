@@ -1,6 +1,6 @@
 //test-midi-controller.js 11:25 latest iteration
-const times = 36;
-const delay = 350; // milliseconds between notes
+const times = 32;
+const delay = 344; // milliseconds between notes
 let midiOutput = null;
 
 navigator.requestMIDIAccess().then(access => {
@@ -49,17 +49,17 @@ function sendArp(times, pitchArray) { //removed baseDelay from args
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
-  //const pitchArray = createRandomPitchArray(6, 32, 85);
+  const pitchArray = createRandomPitchArray(6, 32, 85);
   sendArp(times, pitchArray);//removed delay as an argument
 });
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
-  //if (pitch < 0 || pitch > 127) return;
+  if (pitch < 0 || pitch > 127) return;
   midiOutput.send([0x90 + channel, pitch, velocity]);
   setTimeout(() => {
     midiOutput.send([0x80 + channel, pitch, 0]);
-  }, 350);
+  }, 344);
 }
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
