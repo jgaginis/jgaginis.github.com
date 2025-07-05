@@ -55,7 +55,7 @@ document.getElementById("noteArp").addEventListener("click", () => {
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
-  if (pitch < 0 || pitch > 127) return;
+  //if (pitch < 0 || pitch > 127) return;
   midiOutput.send([0x90 + channel, pitch, velocity]);
   setTimeout(() => {
     midiOutput.send([0x80 + channel, pitch, 0]);
