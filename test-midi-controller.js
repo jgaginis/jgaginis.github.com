@@ -41,7 +41,7 @@ function sendArp(times, pitchArray) { //removed baseDelay from args
     const shiftedPitch = basePitch + transposition;
 
     setTimeout(() => {
-      sendNote(0, shiftedPitch, 84);
+      sendNote(0, shiftedPitch, 64);
     }, currentTime);
 
     currentTime += delayVal;
@@ -49,8 +49,8 @@ function sendArp(times, pitchArray) { //removed baseDelay from args
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
-  const pitchArray = createRandomPitchArray(6, 32, 85);
-  sendArp(times, delay, pitchArray);
+  //const pitchArray = createRandomPitchArray(6, 32, 85);
+  sendArp(times, pitchArray);//removed delay as an argument
 });
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
