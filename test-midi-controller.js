@@ -85,7 +85,7 @@ function sendChordWithSustain() {
   }
 
   const pitchArray = createRandomPitchArray(6, 24, 37);
-  const basePitch = pitchArray[Math.floor((12 * Math.random()) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
+  const basePitch = pitchArray[Math.floor(Math.random(12) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
   const chordType = Math.random() < 0.5 ? 2 : 3;
   const intervals = pitchArray;//[0, 4, 7, 8, 10]; changed from cheap house to pitchArray eu de cologne
   const selected = [];
@@ -100,7 +100,7 @@ function sendChordWithSustain() {
   midiOutput.send([0xB0, 64, sustainValue]);
 
   selected.forEach(pitch => {
-    midiOutput.send([0x90, pitch, 84]);
+    midiOutput.send([0x90, pitch, 73]);
   });
 
   setTimeout(() => {
