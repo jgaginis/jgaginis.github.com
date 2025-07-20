@@ -96,7 +96,7 @@ function sendChordWithSustain() {
     if (note <= 127 && !selected.includes(note)) selected.push(note);
   }
 
-  const sustainValue = randRange(96, 108);
+  const sustainValue = randRange(108, 126);
   midiOutput.send([0xB0, 64, sustainValue]);
 
   selected.forEach(pitch => {
