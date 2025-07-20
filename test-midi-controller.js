@@ -84,7 +84,7 @@ function sendChordWithSustain() {
     return;
   }
 
-  const pitchArray = createRandomPitchArray(6, 24, 61);
+  const pitchArray = createRandomPitchArray(6, 24, 37);
   const basePitch = pitchArray[Math.floor((12 * Math.random()) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
   const chordType = Math.random() < 0.5 ? 2 : 3;
   const intervals = pitchArray;//[0, 4, 7, 8, 10]; changed from cheap house to pitchArray eu de cologne
