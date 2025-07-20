@@ -1,4 +1,4 @@
-//test-midi-controller.js 11:25 latest iteration
+//test-midi-controller.js 11:25 editing high notes iteration
 const times = 32;
 const delay = 344; // milliseconds between notes
 let midiOutput = null;
@@ -85,7 +85,7 @@ function sendChordWithSustain() {
   }
 
   const pitchArray = createRandomPitchArray(6, 32, 73);
-  const basePitch = pitchArray[Math.floor(randRange(12, 49) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
+  const basePitch = pitchArray[Math.floor(randRange(24, 49) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
   const chordType = Math.random() < 0.5 ? 2 : 3;
   const intervals = pitchArray;//[0, 4, 7, 8, 10]; changed from cheap house to pitchArray eu de cologne
   const selected = [];
@@ -109,6 +109,6 @@ function sendChordWithSustain() {
     });
     midiOutput.send([0xB0, 64, 0]);
   }, 4000);
+document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
 }
 
-document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
