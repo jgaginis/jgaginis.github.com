@@ -49,7 +49,7 @@ function sendArp(times, pitchArray) { //removed baseDelay from args
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
-  const pitchArray = createRandomPitchArray(6, 32, 85);
+  const pitchArray = createRandomPitchArray(6, 32, 73);
   sendArp(times, pitchArray);//removed delay as an argument
 });
 
@@ -84,8 +84,8 @@ function sendChordWithSustain() {
     return;
   }
 
-  const pitchArray = createRandomPitchArray(6, 32, 85);
-  const basePitch = pitchArray[Math.floor(Math.random() * pitchArray.length)];
+  const pitchArray = createRandomPitchArray(6, 32, 73);
+  const basePitch = pitchArray[Math.floor(randRange(12, 49) * pitchArray.length)]; //old pitchArray[Math.floor(Math.random() * pitchArray.length)];
   const chordType = Math.random() < 0.5 ? 2 : 3;
   const intervals = pitchArray;//[0, 4, 7, 8, 10]; changed from cheap house to pitchArray eu de cologne
   const selected = [];
@@ -96,7 +96,7 @@ function sendChordWithSustain() {
     if (note <= 127 && !selected.includes(note)) selected.push(note);
   }
 
-  const sustainValue = randRange(108, 128);
+  const sustainValue = randRange(96, 108);
   midiOutput.send([0xB0, 64, sustainValue]);
 
   selected.forEach(pitch => {
