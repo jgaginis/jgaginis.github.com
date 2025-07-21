@@ -50,7 +50,7 @@ function sendArp(times) { //removed baseDelay from args
 }
 
 document.getElementById("noteArp").addEventListener("click", () => {
-  const pitchArray = createRandomPitchArray(6, 24, 61);
+  const pitchArray = createRandomPitchArray(6, 24, 49);
   sendArp(times, pitchArray);//removed delay as an argument
 });
 
