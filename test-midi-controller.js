@@ -28,7 +28,7 @@ function sendArp(times) { //removed baseDelay from args
   const pitchArray = createRandomPitchArray(6, 24, 37);
   const rhythmPattern = [205, 136, 222, 136, 205, 342];
   const transpositions = Array.from({ length: 6 }, () => //changed from length: 5
-    pitchArray[Math.floor(Math.random()* 13) - 12) * pitchArray.length)]
+    pitchArray[Math.floor((Math.random() * pitchArray.length)]
   );
 
   for (let i = 0; i < times; i++) {
