@@ -50,7 +50,7 @@ function randSong() {
     sendArp(bridgeNotes, bridgePitches, rhythmPattern);
   }, verseDuration + chorusDuration);
 }
-document.getElementById("randSong").addEventListener("click", randSong);
+document.getElementById("randSong").addEventListener("click", randSong());
 
 function sendArp(times, pitchArray, rhythmPattern = [205, 136, 222, 136, 205, 342]) { //removed baseDelay from args
   let currentTime = 0;
