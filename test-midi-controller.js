@@ -22,7 +22,36 @@ function randRange(min, max) {
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled);
 }
 
-function sendArp(times) { //removed baseDelay from args
+function randSong() {
+  const delayPerNote = 250;
+
+  const verseNotes = 64;
+  const chorusNotes = 32;
+  const bridgeNotes = 32;
+
+  const versePitches = createRandomPitchArray(6, 40, 60);    // Mid range
+  const chorusPitches = createRandomPitchArray(6, 60, 80);   // Higher range
+  const bridgePitches = createRandomPitchArray(6, 32, 50);   // Lower range
+
+  const verseDuration = verseNotes * delayPerNote;
+  const chorusDuration = chorusNotes * delayPerNote;
+
+  // Fixed rhythmic pattern of 1/8 notes
+  const rhythmPattern = [delayPerNote];
+
+  // Reuse sendArp but with rhythmPattern override
+  sendArp(verseNotes, versePitches, rhythmPattern);
+
+  setTimeout(() => {
+    sendArp(chorusNotes, chorusPitches, rhythmPattern);
+  }, verseDuration);
+
+  setTimeout(() => {
+    sendArp(bridgeNotes, bridgePitches, rhythmPattern);
+  }, verseDuration + chorusDuration);
+}
+
+function sendArp(times, pitchArray, rhythmPattern = [205, 136, 222, 136, 205, 342]) { //removed baseDelay from args
   let currentTime = 0;
   let transposition = 0;
   const pitchArray = createRandomPitchArray(6, 24, 37);
