@@ -49,8 +49,8 @@ function sendArp(times) { //removed pitchArray and baseDelay from args //previou
     currentTime += delayVal;
   }
 }
-});
-document.getElementById("noteArp").addEventListener("click", sendArp); //() => {const pitchArray = createRandomPitchArray(6, 24, 37); //sendArp(times, pitchArray);//removed delay as an argument
+
+document.getElementById("noteArp").addEventListener("click", sendArp); //() => {const pitchArray = createRandomPitchArray(6, 24, 37); //sendArp(times, pitchArray);});//removed delay as an argument
 
 
 function randSong() {
