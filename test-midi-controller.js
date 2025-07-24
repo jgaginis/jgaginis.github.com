@@ -105,6 +105,7 @@ function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   midiOutput.send([0xB0 + channel, 0, 0]);
   midiOutput.send([0xB0 + channel, 32, bankNum]);
 }
+document.getElementById("sendBankSelect").addEventListener("click", sendBankSelect);
 
 function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
