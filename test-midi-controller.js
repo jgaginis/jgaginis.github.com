@@ -3,9 +3,9 @@ const times = 32;
 const delay = 344; // milliseconds between notes
 let midiOutput = null;
 
-navigator.requestMIDIAccess().then(access => {
+navigator.requestMIDIAccess().then((access) => { // navigator.requestMIDIAccess().then(access => {
   const outputs = access.outputs.values();
-  midiOutput = outputs.next().value;
+  midiOutput = outputs.next().value; //or access.outputs.values(); //per mdn web midi api
 
   if (!midiOutput) {
     console.error("No MIDI output devices found.");
