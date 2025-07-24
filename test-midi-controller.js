@@ -98,7 +98,7 @@ function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 12
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, ccNum, ccValue]);
 }
-document.getElementById("sendNote").addEventListener("click", sendCC);
+document.getElementById("sendCC").addEventListener("click", sendCC);
 
 function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   if (!midiOutput) return;
@@ -110,7 +110,7 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   if (!midiOutput) return;
   midiOutput.send([0xC0 + channel, programNum]);
 }
-document.getElementById("sendNote").addEventListener("click", sendProgramChange);
+document.getElementById("sendProgramChange").addEventListener("click", sendProgramChange);
 
 function sendChordWithSustain() {
   if (!midiOutput) {
