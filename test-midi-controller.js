@@ -49,11 +49,8 @@ function sendArp(times) { //removed pitchArray and baseDelay from args //previou
     currentTime += delayVal;
   }
 }
-
-document.getElementById("noteArp").addEventListener("click", () => {
-  const pitchArray = createRandomPitchArray(6, 24, 37);
-  sendArp(times, pitchArray);//removed delay as an argument
 });
+document.getElementById("noteArp").addEventListener("click", sendArp); //() => {const pitchArray = createRandomPitchArray(6, 24, 37); //sendArp(times, pitchArray);//removed delay as an argument
 
 
 function randSong() {
@@ -85,7 +82,7 @@ function randSong() {
   }, verseDuration + chorusDuration);
 }
 
-document.getElementById("randSong").addEventListener("click", randSong());
+document.getElementById("randSong").addEventListener("click", randSong);
 
 function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(32, 73)) {
   if (!midiOutput) return;
@@ -101,6 +98,7 @@ function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 12
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, ccNum, ccValue]);
 }
+document.getElementById("sendNote").addEventListener("click", sendCC);
 
 function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   if (!midiOutput) return;
@@ -112,6 +110,7 @@ function sendProgramChange(channel = 0, programNum = Math.floor(Math.random() * 
   if (!midiOutput) return;
   midiOutput.send([0xC0 + channel, programNum]);
 }
+document.getElementById("sendNote").addEventListener("click", sendProgramChange);
 
 function sendChordWithSustain() {
   if (!midiOutput) {
@@ -146,4 +145,4 @@ function sendChordWithSustain() {
   }, 4000);
 }
 
-document.getElementById("sendChord").addEventListener("click", sendChordWithSustain());
+document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
