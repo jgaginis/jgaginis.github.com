@@ -95,6 +95,7 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
     midiOutput.send([0x80 + channel, pitch, 0]);
   }, 344);
 }
+document.getElementById("sendNote").addEventListener("click", sendNote);
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
