@@ -146,4 +146,4 @@ function sendChordWithSustain() {
   }, 4000);
 }
 
-document.getElementById("sendChord").addEventListener("click", sendChordWithSustain);
+document.getElementById("sendChordWithSustain").addEventListener("click", sendChordWithSustain);
