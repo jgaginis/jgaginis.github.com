@@ -13,7 +13,10 @@
     text-align: center;
     border: .15em solid #84d1eb;
     border-radius: .25em;
-    font: bold 120% 'trebuchet ms',helvetica,sans-serif; 
+    font: bold 120%    
+    font-family: Consolas, monaco, monospace; 
+    text-style: monospace;
+    font-weight: 700;
     cursor: pointer;
     margin: 0.5em;   
 }
@@ -24,7 +27,7 @@ body{
     text-align: center; 
     font-size: 150%; 
     margin: .2rem;
-    margin-left:2.25;
+    margin-left: 2.25;
     font-family: Consolas, monaco, monospace;
     text-style: monospace;
     width: auto;
