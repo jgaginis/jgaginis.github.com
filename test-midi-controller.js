@@ -23,7 +23,7 @@ function randRange(min, max) {
 }
 
 
-function sendArp(times) { //removed pitchArray and baseDelay from args //previously instructed to  = [205, 136, 222, 136, 205, 342]
+function sendArp(times = 32) { //removed pitchArray and baseDelay from args //previously instructed to  = [205, 136, 222, 136, 205, 342]
   let currentTime = 0;
   let transposition = 0;
   const pitchArray = createRandomPitchArray(6, 24, 37);
