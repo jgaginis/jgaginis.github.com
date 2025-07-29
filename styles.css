@@ -22,7 +22,7 @@
 }
 
 body{   
-    background-image:linear-gradient(45deg, rgb(65, 185, 224, 0.73), rgb(39, 145, 222, 0.13));
+    background-image:linear-gradient(45deg, rgb(65, 185, 224, 0.73), rgb(39, 145, 222, 0.73));
     background-attachment: fixed;
     text-align: center; 
     font-size: 150%; 
@@ -50,13 +50,13 @@ body{
    text-style: monospace;
    font-weight: 700;
    color: #4169E1;
-   background-color: rgb(65, 105, 225, 0.125);
+   background-color: rgb(73, 59, 217, 0.73);
    text-shadow: 9px 9px midnight blue;
    padding: .25em .75em;
    }     
    
    a {
-   background-color: rgb(65, 105, 225, 0.5);
+   background-color: rgb(49, 149, 182, 0.73);
    padding: .5em .75em;
    color:#4169E1;
    font-family: Consolas, monaco, monospace;
