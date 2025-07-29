@@ -7,11 +7,11 @@
 
 
 #sendNote, #noteArp, #sendCC, #sendBankSelect, #sendProgramChange, button, input[type="button"], input[type="submit"]  {
-    background-color: #E0B941; /* orange-red */
-    color: #41B9E0;
-    padding: .5em .75em;
+    background-color: #E06941; /* orange-red */
+    color: #849AEB;
+    padding: .63em .73em;
     text-align: center;
-    border: .15em solid #84d1eb;
+    border: .15em solid #3DB6DF;
     border-radius: .25em;
     font-size: 150%;    
     font-family: Consolas, monaco, monospace; 
