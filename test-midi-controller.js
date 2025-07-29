@@ -59,7 +59,7 @@ document.getElementById("noteArp").addEventListener("click", () => sendArp()); /
 function randSong() {
   const delayPerNote = 250;
 
-  const verseNotes = 64;
+  const verseNotes = 32;
   const chorusNotes = 32;
   const bridgeNotes = 32;
 
