@@ -32,6 +32,9 @@ function sendArp() { //removed pitchArray and baseDelay from args //previously i
     pitchArray[Math.floor(Math.random() * pitchArray.length)]
   );
 
+    // Send program change before verse
+  sendProgramChange();
+
   for (let i = 0; i < times; i++) {
     const delayVal = rhythmPattern[Math.floor(Math.random() * rhythmPattern.length)];
 
@@ -70,6 +73,9 @@ function randSong() {
   // Fixed rhythmic pattern of 1/8 notes
   const rhythmPattern = [delayPerNote];
 
+  // Send program change before verse, currently used in sendArp instead
+  //sendProgramChange();
+  
   // Reuse sendArp but with rhythmPattern override
   sendArp(verseNotes, versePitches, rhythmPattern);
 
