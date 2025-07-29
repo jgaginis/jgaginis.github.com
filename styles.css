@@ -22,7 +22,7 @@
 }
 
 body{   
-    background-image:linear-gradient(45deg, rgb(65, 105, 224, 0.73), rgb(39, 145, 222, 0.73));
+    background-image:linear-gradient(45deg, rgb(45, 95, 244, 0.85), rgb(39, 145, 222, 0.63));
     background-attachment: fixed;
     text-align: center; 
     font-size: 150%; 
