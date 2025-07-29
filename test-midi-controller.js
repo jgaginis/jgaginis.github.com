@@ -50,7 +50,7 @@ function sendArp() { //removed pitchArray and baseDelay from args //previously i
   }
 }
 
-document.getElementById("noteArp").addEventListener("click", sendArp); //() => {const pitchArray = createRandomPitchArray(6, 24, 37); //sendArp(times, pitchArray);});//removed delay as an argument
+document.getElementById("noteArp").addEventListener("click", () => sendArp()); //() => {const pitchArray = createRandomPitchArray(6, 24, 37); //sendArp(times, pitchArray);});//removed delay as an argument
 
 
 function randSong() {
@@ -92,20 +92,20 @@ function sendNote(channel = 0, pitch = randRange(32, 85), velocity = randRange(3
     midiOutput.send([0x80 + channel, pitch, 0]);
   }, 344);
 }
-document.getElementById("sendNote").addEventListener("click", sendNote);
+document.getElementById("sendNote").addEventListener("click", () => sendNote());
 
 function sendCC(channel = 0, ccNum = 74, ccValue = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, ccNum, ccValue]);
 }
-document.getElementById("sendCC").addEventListener("click", sendCC);
+document.getElementById("sendCC").addEventListener("click", () => sendCC());
 
 function sendBankSelect(channel = 0, bankNum = Math.floor(Math.random() * 5)) {
   if (!midiOutput) return;
   midiOutput.send([0xB0 + channel, 0, 0]);
   midiOutput.send([0xB0 + channel, 32, bankNum]);
 }
-document.getElementById("sendBankSelect").addEventListener("click", sendBankSelect);
+document.getElementById("sendBankSelect").addEventListener("click", () =>sendBankSelect());
 
 function sendProgramChange(channel = 0, bankNum = Math.floor(Math.random() * 5), programNum = Math.floor(Math.random() * 128)) {
   if (!midiOutput) return;
@@ -113,7 +113,7 @@ function sendProgramChange(channel = 0, bankNum = Math.floor(Math.random() * 5),
   midiOutput.send([0xB0 + channel, 32, bankNum]);
   midiOutput.send([0xC0 + channel, programNum]);
 }
-document.getElementById("sendProgramChange").addEventListener("click", sendProgramChange);
+document.getElementById("sendProgramChange").addEventListener("click", () => sendProgramChange());
 
 
 function sendChordWithSustain() {
@@ -149,4 +149,4 @@ function sendChordWithSustain() {
   }, 4000);
 }
 
-document.getElementById("sendChordWithSustain").addEventListener("click", sendChordWithSustain);
+document.getElementById("sendChordWithSustain").addEventListener("click", () => sendChordWithSustain());
