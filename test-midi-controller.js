@@ -265,13 +265,18 @@ async function playNasaTrack() {
   }
 
   const pitches = normalizeToPitchRange(speeds, 36, 84);
-  const noteDuration = 250; // ms between notes — tweak to taste
-
-  pitches.forEach((pitch, i) => {
+  const noteDuration = 500; // slightly longer gap so 3 notes are clearly audible
+  
+  // Just take the first 3 pitches to confirm data is working  
+    const testPitches = pitches.slice(0, 3);
+  console.log("Test pitches:", testPitches); // <-- this will tell us if data is arriving
+  
+  testPitches.forEach((pitch, i) => {
     setTimeout(() => {
+      console.log(`Sending note ${i + 1}: pitch ${pitch}`);
       sendNote(0, pitch, randRange(48, 80));
     }, i * noteDuration);
   });
-}
+
 
 document.getElementById("playNasa").addEventListener("click", playNasaTrack);
