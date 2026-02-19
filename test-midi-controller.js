@@ -204,6 +204,7 @@ function parseHorizonsVelocities(text) {
 
   if (dataStart === -1 || dataEnd === -1) {
     console.error("Could not find data block in Horizons response");
+    console.log("Full response:", text); // log full response to inspect format
     return [];
   }
 
