@@ -196,6 +196,7 @@ async function fetchHorizonsVelocity(bodyId) {
   const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(horizonsUrl)}`;
   const response = await fetch(proxyUrl);
   const text = await response.text();
+  console.log("Raw Horizons response:", text.substring(0, 500)); // first 500 chars
   return parseHorizonsVelocities(text);
 }
 
