@@ -179,17 +179,12 @@ async function fetchHorizonsVelocity(bodyId) {
 
   const params = new URLSearchParams({
     format: "text",
-    COMMAND: `'${bodyId}'`,
-    OBJ_DATA: "NO",
-    MAKE_EPHEM: "YES",
+    COMMAND: bodyId,
     EPHEM_TYPE: "VECTORS",
-    CENTER: "'500@10'", // Sun-centered
-    START_TIME: `'${startDate}'`,
-    STOP_TIME: `'${stopDate}'`,
-    STEP_SIZE: `'${stepSize}'`,
-    OUT_UNITS: "AU-D",
-    VECT_TABLE: "1",
-    CSV_FORMAT: "YES",
+    CENTER: "500@10",
+    START_TIME: "2024-01-01",
+    STOP_TIME: "2024-02-01",
+    STEP_SIZE: "7d",
   });
   
   const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
