@@ -207,6 +207,9 @@ function parseHorizonsVelocities(text) {
     return [];
   }
 
+    // Log the raw data lines so we can see exact format
+  console.log("Data lines:", lines.slice(dataStart, dataStart + 6));
+
   const speeds = [];
   // Data comes in pairs of lines in vector format; CSV rows alternate
   for (let i = dataStart + 1; i < dataEnd; i++) {
