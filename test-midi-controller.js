@@ -188,7 +188,7 @@ async function fetchHorizonsVelocity(bodyId) {
   });
   
   const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
-  const response = await fetch(proxyUrl);
+  const response = await fetch(horizonsUrl);
   const text = await response.text();
   console.log("Raw Horizons response:", text.substring(0, 500)); // first 500 chars
   return parseHorizonsVelocities(text);
