@@ -189,7 +189,7 @@ async function fetchHorizonsVelocity(bodyId) {
   });
 
   const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
-  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(horizonsUrl)}`;
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(horizonsUrl)}`; //alternative proxy url: 'https://corsproxy.io/?
 
   const response = await fetch(proxyUrl);
   const text = await response.text();
