@@ -153,6 +153,10 @@ function sendChordWithSustain() {
     });
     midiOutput.send([0xB0, 64, 0]);
   }, 4000);
+}
+
+document.getElementById("sendChordWithSustain").addEventListener("click", () => sendChordWithSustain());
+
 
   // NASA Horizons data sonification
 // Picks a random body, fetches velocity data, maps to pitch, plays as a sequence
@@ -271,6 +275,3 @@ async function playNasaTrack() {
 }
 
 document.getElementById("playNasa").addEventListener("click", playNasaTrack);
-}
-
-document.getElementById("sendChordWithSustain").addEventListener("click", () => sendChordWithSustain());
