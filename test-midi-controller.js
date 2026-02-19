@@ -211,12 +211,14 @@ function parseHorizonsVelocities(text) {
   const speeds = [];
   // Data comes in pairs of lines in vector format; CSV rows alternate
   for (let i = dataStart + 1; i < dataEnd; i++) {
-    const cols = lines[i].split(",").map(s => s.trim());
+    const line = lines[i].trim();
+    if (!line) continue;
+    const cols = line.split(/\s+/);
     // VECT_TABLE=1 CSV: JDTDB, Cal Date, X, Y, Z, VX, VY, VZ, ...
-    if (cols.length >= 8) {
-      const vx = parseFloat(cols[5]);
-      const vy = parseFloat(cols[6]);
-      const vz = parseFloat(cols[7]);
+    if (cols.length >= 3) {
+      const vx = parseFloat(cols[0]);
+      const vy = parseFloat(cols[1]);
+      const vz = parseFloat(cols[2]);
       if (!isNaN(vx)) {
         speeds.push(Math.sqrt(vx * vx + vy * vy + vz * vz));
       }
