@@ -191,13 +191,10 @@ async function fetchHorizonsVelocity(bodyId) {
     VECT_TABLE: "1",
     CSV_FORMAT: "YES",
   });
-
+  
+  const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
   const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(horizonsUrl)}`;
   const response = await fetch(proxyUrl);
-  //const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
-  //const proxyUrl = `'https://corsproxy.io/?url=${encodeURIComponent(horizonsUrl)}`; //alternative proxy url:https://api.allorigins.win/raw?url= or 'https://corsproxy.io/?
-
-  //const response = await fetch(proxyUrl);
   const text = await response.text();
   return parseHorizonsVelocities(text);
 }
