@@ -153,6 +153,124 @@ function sendChordWithSustain() {
     });
     midiOutput.send([0xB0, 64, 0]);
   }, 4000);
+
+  // NASA Horizons data sonification
+// Picks a random body, fetches velocity data, maps to pitch, plays as a sequence
+
+const HORIZONS_BODIES = [
+  { name: "Mars", id: "499" },
+  { name: "Jupiter", id: "599" },
+  { name: "Saturn", id: "699" },
+  { name: "Venus", id: "299" },
+  { name: "Mercury", id: "199" },
+  { name: "Titan", id: "606" },
+  { name: "Europa", id: "502" },
+  { name: "Io", id: "501" },
+];
+
+async function fetchHorizonsVelocity(bodyId) {
+  const startDate = "2024-01-01";
+  const stopDate  = "2024-04-01";
+  const stepSize  = "1d"; // one data point per day (~90 points)
+
+  const params = new URLSearchParams({
+    format: "text",
+    COMMAND: `'${bodyId}'`,
+    OBJ_DATA: "NO",
+    MAKE_EPHEM: "YES",
+    EPHEM_TYPE: "VECTORS",
+    CENTER: "'500@10'", // Sun-centered
+    START_TIME: `'${startDate}'`,
+    STOP_TIME: `'${stopDate}'`,
+    STEP_SIZE: `'${stepSize}'`,
+    OUT_UNITS: "AU-D",
+    VECT_TABLE: "1",
+    CSV_FORMAT: "YES",
+  });
+
+  const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
+  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(horizonsUrl)}`;
+
+  const response = await fetch(proxyUrl);
+  const text = await response.text();
+  return parseHorizonsVelocities(text);
+}
+
+function parseHorizonsVelocities(text) {
+  // CSV vector table columns: JDTDB, ...., VX, VY, VZ
+  // We want the speed magnitude: sqrt(VX^2 + VY^2 + VZ^2)
+  const lines = text.split("\n");
+  const dataStart = lines.findIndex(l => l.includes("$$SOE"));
+  const dataEnd   = lines.findIndex(l => l.includes("$$EOE"));
+
+  if (dataStart === -1 || dataEnd === -1) {
+    console.error("Could not find data block in Horizons response");
+    return [];
+  }
+
+  const speeds = [];
+  // Data comes in pairs of lines in vector format; CSV rows alternate
+  for (let i = dataStart + 1; i < dataEnd; i++) {
+    const cols = lines[i].split(",").map(s => s.trim());
+    // VECT_TABLE=1 CSV: JDTDB, Cal Date, X, Y, Z, VX, VY, VZ, ...
+    if (cols.length >= 8) {
+      const vx = parseFloat(cols[5]);
+      const vy = parseFloat(cols[6]);
+      const vz = parseFloat(cols[7]);
+      if (!isNaN(vx)) {
+        speeds.push(Math.sqrt(vx * vx + vy * vy + vz * vz));
+      }
+    }
+  }
+  return speeds;
+}
+
+function normalizeToPitchRange(values, minPitch = 36, maxPitch = 84) {
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return values.map(v =>
+    Math.round(minPitch + ((v - min) / (max - min)) * (maxPitch - minPitch))
+  );
+}
+
+async function playNasaTrack() {
+  if (!midiOutput) {
+    console.warn("No MIDI output available.");
+    return;
+  }
+
+  // Pick a random body
+  const body = HORIZONS_BODIES[Math.floor(Math.random() * HORIZONS_BODIES.length)];
+  console.log(`Fetching data for: ${body.name}`);
+
+  // Optional: show which body was chosen in the UI
+  const label = document.getElementById("nasaBodyLabel");
+  if (label) label.textContent = `Playing: ${body.name}`;
+
+  let speeds;
+  try {
+    speeds = await fetchHorizonsVelocity(body.id);
+  } catch (e) {
+    console.error("Horizons fetch failed:", e);
+    return;
+  }
+
+  if (speeds.length === 0) {
+    console.error("No speed data parsed.");
+    return;
+  }
+
+  const pitches = normalizeToPitchRange(speeds, 36, 84);
+  const noteDuration = 250; // ms between notes — tweak to taste
+
+  pitches.forEach((pitch, i) => {
+    setTimeout(() => {
+      sendNote(0, pitch, randRange(48, 80));
+    }, i * noteDuration);
+  });
+}
+
+document.getElementById("playNasa").addEventListener("click", playNasaTrack);
 }
 
 document.getElementById("sendChordWithSustain").addEventListener("click", () => sendChordWithSustain());
