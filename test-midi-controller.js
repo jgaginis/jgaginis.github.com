@@ -1,4 +1,4 @@
-//test-midi-controller.js 11:25 editing high notes iteration
+taz//test-midi-controller.js 11:25 editing high notes iteration
 const delay = 344; // milliseconds between notes
 let midiOutput = null;
 
@@ -197,7 +197,7 @@ async function fetchHorizonsVelocity(bodyId) {
   //const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
   //const proxyUrl = `'https://corsproxy.io/?url=${encodeURIComponent(horizonsUrl)}`; //alternative proxy url:https://api.allorigins.win/raw?url= or 'https://corsproxy.io/?
 
-  const response = await fetch(proxyUrl);
+  //const response = await fetch(proxyUrl);
   const text = await response.text();
   return parseHorizonsVelocities(text);
 }
