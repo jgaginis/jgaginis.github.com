@@ -1,4 +1,4 @@
-taz//test-midi-controller.js 11:25 editing high notes iteration
+//test-midi-controller.js 11:25 editing high notes iteration
 const delay = 344; // milliseconds between notes
 let midiOutput = null;
 
