@@ -277,6 +277,6 @@ async function playNasaTrack() {
       sendNote(0, pitch, randRange(48, 80));
     }, i * noteDuration);
   });
-
+}
 
 document.getElementById("playNasa").addEventListener("click", playNasaTrack);
