@@ -158,76 +158,8 @@ function sendChordWithSustain() {
 document.getElementById("sendChordWithSustain").addEventListener("click", () => sendChordWithSustain());
 
 
-  // NASA Horizons data sonification
-// Picks a random body, fetches velocity data, maps to pitch, plays as a sequence
-
-const HORIZONS_BODIES = [
-  { name: "Mars", id: "499" },
-  { name: "Jupiter", id: "599" },
-  { name: "Saturn", id: "699" },
-  { name: "Venus", id: "299" },
-  { name: "Mercury", id: "199" },
-  { name: "Titan", id: "606" },
-  { name: "Europa", id: "502" },
-  { name: "Io", id: "501" },
-];
-
-async function fetchHorizonsVelocity(bodyId) {
-  const startDate = "2024-01-01";
-  const stopDate  = "2024-04-01";
-  const stepSize  = "1d"; // one data point per day (~90 points)
-
-  const params = new URLSearchParams({
-    format: "text",
-    COMMAND: bodyId,
-    EPHEM_TYPE: "VECTORS",
-    CENTER: "500@10",
-    START_TIME: "2024-01-01",
-    STOP_TIME: "2024-02-01",
-    STEP_SIZE: "7d",
-  });
-  
-  const horizonsUrl = `https://ssd.jpl.nasa.gov/api/horizons.api?${params}`;
-  const response = await fetch(horizonsUrl);
-  const text = await response.text();
-  console.log("Raw Horizons response:", text.substring(0, 500)); // first 500 chars
-  return parseHorizonsVelocities(text);
-}
-
-function parseHorizonsVelocities(text) {
-  // CSV vector table columns: JDTDB, ...., VX, VY, VZ
-  // We want the speed magnitude: sqrt(VX^2 + VY^2 + VZ^2)
-  const lines = text.split("\n");
-  const dataStart = lines.findIndex(l => l.includes("$$SOE"));
-  const dataEnd   = lines.findIndex(l => l.includes("$$EOE"));
-
-  if (dataStart === -1 || dataEnd === -1) {
-    console.error("Could not find data block in Horizons response");
-    console.log("Full response:", text); // log full response to inspect format
-    return [];
-  }
-
-    // Log the raw data lines so we can see exact format
-  console.log("Data lines:", lines.slice(dataStart, dataStart + 6));
-
-  const speeds = [];
-  // Data comes in pairs of lines in vector format; CSV rows alternate
-  for (let i = dataStart + 1; i < dataEnd; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-    const cols = line.split(/\s+/);
-    // VECT_TABLE=1 CSV: JDTDB, Cal Date, X, Y, Z, VX, VY, VZ, ...
-    if (cols.length >= 3) {
-      const vx = parseFloat(cols[0]);
-      const vy = parseFloat(cols[1]);
-      const vz = parseFloat(cols[2]);
-      if (!isNaN(vx)) {
-        speeds.push(Math.sqrt(vx * vx + vy * vy + vz * vz));
-      }
-    }
-  }
-  return speeds;
-}
+  // NASA data sonification
+// Mars data that lends itself to rhythmic character
 
 function normalizeToPitchRange(values, minPitch = 36, maxPitch = 84) {
   const min = Math.min(...values);
