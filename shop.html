@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNFCS (page not found continue shopping)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8dfd0;
+      --ink: #1a1612;
+      --warm-gray: #8c8078;
+      --accent: #c4533a;
+      --card-bg: #faf7f2;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid var(--sand);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(196,83,58,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .site-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3rem, 8vw, 6rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .header-sub {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--warm-gray);
+      text-transform: uppercase;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      max-width: 520px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .intro p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--warm-gray);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+    }
+
+    .divider span {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      white-space: nowrap;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+      max-width: 1100px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--sand);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.12s; }
+    .card:nth-child(3) { animation-delay: 0.19s; }
+    .card:nth-child(4) { animation-delay: 0.26s; }
+    .card:nth-child(5) { animation-delay: 0.33s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26,22,18,0.10);
+      z-index: 1;
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      background: var(--sand);
+      position: relative;
+    }
+
+    /* placeholder when no real image */
+    .card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--sand);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--warm-gray);
+    }
+
+    .card-img-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .card-img-placeholder span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .card-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    .card-status {
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .card-status.sold {
+      color: var(--warm-gray);
+      text-decoration: line-through;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .card-desc {
+      font-size: 0.68rem;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      margin-bottom: 1rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--sand);
+    }
+
+    .card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+    }
+
+    .card-size {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      background: var(--sand);
+      padding: 0.25rem 0.6rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--sand);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 1px; padding: 0 1rem; }
+      h1 { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="site-label">jgaginis.github.io</p>
+    <h1>The <em>Edit</em></h1>
+    <p class="header-sub">A small wardrobe clearout &mdash; good pieces, new homes</p>
+  </header>
+
+  <div class="intro">
+    <p>A handful of things I've loved and worn well. All items are in excellent condition unless noted. DM or email to claim.</p>
+  </div>
+
+  <div class="divider"><span>5 listings</span></div>
+
+  <div class="grid">
+
+    <!-- ── ITEM 1 ── -->
+    <div class="card">
+      <!-- Replace the placeholder below with: <img class="card-img" src="images/item1.jpg" alt="Item name"> -->
+      <div class="card-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>Add photo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Outerwear</span>
+          <span class="card-status">Available</span>
+        </div>
+        <h2 class="card-title">Item Name Here</h2>
+        <p class="card-desc">Brand, color, condition notes. Worn a handful of times. No visible wear. Great for layering.</p>
+        <div class="card-footer">
+          <span class="card-price">$00</span>
+          <span class="card-size">Size M</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ITEM 2 ── -->
+    <div class="card">
+      <div class="card-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>Add photo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Tops</span>
+          <span class="card-status">Available</span>
+        </div>
+        <h2 class="card-title">Item Name Here</h2>
+        <p class="card-desc">Brand, color, condition notes. Worn a handful of times. No visible wear. Great for layering.</p>
+        <div class="card-footer">
+          <span class="card-price">$00</span>
+          <span class="card-size">Size S</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ITEM 3 ── -->
+    <div class="card">
+      <div class="card-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>Add photo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Bottoms</span>
+          <span class="card-status">Available</span>
+        </div>
+        <h2 class="card-title">Item Name Here</h2>
+        <p class="card-desc">Brand, color, condition notes. Worn a handful of times. No visible wear. Great for layering.</p>
+        <div class="card-footer">
+          <span class="card-price">$00</span>
+          <span class="card-size">Size 32</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ITEM 4 ── -->
+    <div class="card">
+      <div class="card-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>Add photo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Footwear</span>
+          <span class="card-status">Available</span>
+        </div>
+        <h2 class="card-title">Item Name Here</h2>
+        <p class="card-desc">Brand, color, condition notes. Worn a handful of times. No visible wear. Great for layering.</p>
+        <div class="card-footer">
+          <span class="card-price">$00</span>
+          <span class="card-size">Size 10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ITEM 5 ── -->
+    <div class="card">
+      <div class="card-img-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+          <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <span>Add photo</span>
+      </div>
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="card-tag">Accessories</span>
+          <span class="card-status">Available</span>
+        </div>
+        <h2 class="card-title">Item Name Here</h2>
+        <p class="card-desc">Brand, color, condition notes. Worn a handful of times. No visible wear. Great for layering.</p>
+        <div class="card-footer">
+          <span class="card-price">$00</span>
+          <span class="card-size">One size</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>This is not a webshop, but all sales final &mdash; <p href="mailto:thisisnotanemail">notanemail@pagenotfounddotcom</p> &mdash; <a href="https://jgaginis.github.io">homepage</a></p>
+  </footer>
+
+</body>
+</html>
