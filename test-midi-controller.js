@@ -169,21 +169,25 @@ function normalizeToPitchRange(values, minPitch = 36, maxPitch = 84) {
   );
 }
 
- // Mars orbital speed data (km/s approximations)
-// Sampled every 14 days: Jan 2020 - Jan 2021 (COVID pandemic period)
+// Real Mars orbital speed data (km/s) — Jan 2020 to Jan 2021
+// Source: NASA JPL Horizons, COVID pandemic period
+// Speed = sqrt(VX² + VY² + VZ²), sampled every ~14 days
+
 const MARS_26 = [
-  24.1, 23.8, 23.4, 23.0, 22.6, 22.3, 22.1, 22.0,
-  22.0, 22.1, 22.3, 22.6, 23.0, 23.4, 23.8, 24.1,
-  24.5, 24.9, 25.2, 25.5, 25.7, 25.9, 26.1, 26.3,
-  26.4, 26.5
+  23.1037, 23.3485, 23.6102, 23.8860, 24.1722,
+  24.4645, 24.7583, 25.0482, 25.3283, 25.5923,
+  25.8338, 26.0462, 26.2235, 26.3601, 26.4518,
+  26.4954, 26.4895, 26.4342, 26.3315, 26.1849,
+  25.9990, 25.7795, 25.5327, 25.2649, 24.9827,
+  24.6921
 ];
 
-// Same period sampled every 28 days: 13 points — one bar of 13/8
+// Same arc sampled every ~28 days — 13 points
 const MARS_13 = [
-  24.1, 23.4, 22.6, 22.1, 22.0, 22.3, 23.0,
-  23.8, 24.5, 25.2, 25.7, 26.1, 26.4
+  23.1037, 23.6102, 24.1722, 24.7583, 25.3283,
+  25.8338, 26.2235, 26.4518, 26.4895, 26.3315,
+  25.9990, 25.5327, 24.9827
 ];
-
 function playNasaTrack() {
   if (!midiOutput) {
     console.warn("No MIDI output available.");
