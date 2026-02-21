@@ -237,43 +237,39 @@ function normalizeToPitchRange(values, minPitch = 36, maxPitch = 84) {
   );
 }
 
-async function playNasaTrack() {
+ // Mars orbital speed data (km/s approximations)
+// Sampled every 14 days: Jan 2020 - Jan 2021 (COVID pandemic period)
+const MARS_26 = [
+  24.1, 23.8, 23.4, 23.0, 22.6, 22.3, 22.1, 22.0,
+  22.0, 22.1, 22.3, 22.6, 23.0, 23.4, 23.8, 24.1,
+  24.5, 24.9, 25.2, 25.5, 25.7, 25.9, 26.1, 26.3,
+  26.4, 26.5
+];
+
+// Same period sampled every 28 days: 13 points — one bar of 13/8
+const MARS_13 = [
+  24.1, 23.4, 22.6, 22.1, 22.0, 22.3, 23.0,
+  23.8, 24.5, 25.2, 25.7, 26.1, 26.4
+];
+
+function playNasaTrack() {
   if (!midiOutput) {
     console.warn("No MIDI output available.");
     return;
   }
 
-  // Pick a random body
-  const body = HORIZONS_BODIES[Math.floor(Math.random() * HORIZONS_BODIES.length)];
-  console.log(`Fetching data for: ${body.name}`);
+  // Pick one of the two arrays at random
+  const dataset = Math.random() < 0.5 ? MARS_26 : MARS_13;
+  const label = dataset.length === 26 ? "Mars 26-step" : "Mars 13-step";
+  console.log(`Playing: ${label} (COVID period Jan 2020 - Jan 2021)`);
 
-  // Optional: show which body was chosen in the UI
-  const label = document.getElementById("nasaBodyLabel");
-  if (label) label.textContent = `Playing: ${body.name}`;
+  const pitches = normalizeToPitchRange(dataset, 36, 84);
+  const noteDuration = 350;
 
-  let speeds;
-  try {
-    speeds = await fetchHorizonsVelocity(body.id);
-  } catch (e) {
-    console.error("Horizons fetch failed:", e);
-    return;
-  }
+  console.log("Pitches:", pitches);
 
-  if (speeds.length === 0) {
-    console.error("No speed data parsed.");
-    return;
-  }
-
-  const pitches = normalizeToPitchRange(speeds, 36, 84);
-  const noteDuration = 500; // slightly longer gap so 3 notes are clearly audible
-  
-  // Just take the first 3 pitches to confirm data is working  
-    const testPitches = pitches.slice(0, 3);
-  console.log("Test pitches:", testPitches); // <-- this will tell us if data is arriving
-  
-  testPitches.forEach((pitch, i) => {
+  pitches.forEach((pitch, i) => {
     setTimeout(() => {
-      console.log(`Sending note ${i + 1}: pitch ${pitch}`);
       sendNote(0, pitch, randRange(48, 80));
     }, i * noteDuration);
   });
